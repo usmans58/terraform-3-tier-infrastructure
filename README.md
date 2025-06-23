@@ -69,7 +69,7 @@ terraform-3tier-infrastructure/
 
 
 # Cleanup
-To destroy all infrastructure created by this project:
+5. To destroy all infrastructure created by this project:
     terraform destroy
 
 
