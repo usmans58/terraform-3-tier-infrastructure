@@ -23,11 +23,12 @@ This project builds the following AWS resources:
 
 ## 📁 Directory Structure
 terraform-3tier-infrastructure/
+
 ├── modules/
-│   ├── network/
-│   ├── compute/
-│   ├── security/
-│   └── alb/
+│   ├── VPC/
+│   ├── EC2/
+│   ├── Security Group/
+│   └── ALB/
 ├── variables.tf
 ├── main.tf
 ├── outputs.tf
