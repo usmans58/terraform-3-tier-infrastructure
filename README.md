@@ -70,6 +70,7 @@ terraform-3tier-infrastructure/
 
 # Cleanup
 5. To destroy all infrastructure created by this project:
+    ```bash
     terraform destroy
 
 
