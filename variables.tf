@@ -34,3 +34,15 @@ variable "vpc_cidr_block" {
   description = "CIDR block for the VPC"
   type        = string
 }
+variable "ssh_cidr_ipv4" {
+  description = "CIDR block for SSH access"
+  type        = string
+}
+variable "security_group_name_frontend" {
+  description = "Name of the frontend security group"
+  type        = string
+}
+variable "security_group_name_backend" {
+  description = "Name of the backend security group"
+  type        = string
+}

@@ -6,25 +6,27 @@ resource "aws_key_pair" "ssh_key" {
 }
 
 module "ec2-frontend" {
-  source          = "./modules/EC2"
-  ami_id          = var.ami_id
-  instance_name = "frontend-instance"
-  instance_type   = var.instance_type
-  key_name        = var.key_name
-  public_key_path = var.public_key_path
-  subnet_id       = module.vpc.public_subnet_ids[0]
+  source            = "./modules/EC2"
+  ami_id            = var.ami_id
+  instance_name     = "frontend-instance"
+  instance_type     = var.instance_type
+  key_name          = var.key_name
+  public_key_path   = var.public_key_path
+  subnet_id         = module.vpc.public_subnet_ids[0]
+  security_group_id = [module.security_groups.frontend_security_group_id]
 
   depends_on = [module.vpc]
 }
 
 module "ec2-backend" {
-  source          = "./modules/EC2"
-  instance_name   = "backend-instance"
-  ami_id          = var.ami_id
-  instance_type   = var.instance_type
-  key_name        = var.key_name
-  public_key_path = var.public_key_path
-  subnet_id       = module.vpc.private_subnet_ids[0]
+  source            = "./modules/EC2"
+  instance_name     = "backend-instance"
+  ami_id            = var.ami_id
+  instance_type     = var.instance_type
+  key_name          = var.key_name
+  public_key_path   = var.public_key_path
+  subnet_id         = module.vpc.private_subnet_ids[0]
+  security_group_id = [module.security_groups.backend_security_group_id]
 
   depends_on = [module.vpc]
 }
@@ -36,5 +38,16 @@ module "vpc" {
   public_subnet_cidr_blocks  = var.public_subnet_cidr_blocks
   private_subnet_cidr_blocks = var.private_subnet_cidr_blocks
   availability_zones         = var.availability_zones
+
+}
+module "security_groups" {
+  source                       = "./modules/Security-group"
+  vpc_id                       = module.vpc.vpc_id
+  ssh_cidr_ipv4                = var.ssh_cidr_ipv4
+  security_group_name_frontend = var.security_group_name_frontend
+  security_group_name_backend  = var.security_group_name_backend
+
+
+  depends_on = [module.vpc]
 
 }
