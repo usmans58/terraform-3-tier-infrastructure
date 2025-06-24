@@ -5,6 +5,6 @@ resource "aws_instance" "ec2_instance" {
   subnet_id     = var.subnet_id
 
   tags = {
-    Name = "EC2-Instance"
+    Name = "${var.instance_name}"
   }
 }

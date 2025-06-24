@@ -5,15 +5,26 @@ resource "aws_key_pair" "ssh_key" {
 
 }
 
-module "ec2" {
+module "ec2-frontend" {
   source          = "./modules/EC2"
   ami_id          = var.ami_id
+  instance_name = "frontend-instance"
   instance_type   = var.instance_type
   key_name        = var.key_name
   public_key_path = var.public_key_path
   subnet_id       = module.vpc.public_subnet_ids[0]
 
+  depends_on = [module.vpc]
+}
 
+module "ec2-backend" {
+  source          = "./modules/EC2"
+  instance_name   = "backend-instance"
+  ami_id          = var.ami_id
+  instance_type   = var.instance_type
+  key_name        = var.key_name
+  public_key_path = var.public_key_path
+  subnet_id       = module.vpc.private_subnet_ids[0]
 
   depends_on = [module.vpc]
 }
