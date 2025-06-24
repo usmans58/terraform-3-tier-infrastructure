@@ -1,7 +1,7 @@
 variable "ami_id" {
   description = "AMI ID for the EC2 instance"
   type        = string
-  
+
 }
 
 variable "instance_type" {
@@ -16,5 +16,9 @@ variable "key_name" {
 }
 variable "public_key_path" {
   description = "Path to the public key file for the SSH key pair"
+  type        = string
+}
+variable "subnet_id" {
+  description = "Subnet ID for the EC2 instance"
   type        = string
 }
