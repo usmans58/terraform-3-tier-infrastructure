@@ -46,10 +46,6 @@ variable "security_group_name_backend" {
   description = "Name of the backend security group"
   type        = string
 }
-variable "db_instance_identifier" {
-  description = "The identifier for the database instance"
-  type        = string
-}
 variable "db_engine" {
   description = "The database engine to use"
   type        = string
@@ -84,11 +80,24 @@ variable "publicly_accessible" {
   type        = bool
   default     = false
 }
-variable "vpc_security_group_ids" {
-  description = "List of VPC security group IDs to associate with the database"
-  type        = list(string)
-}   
 variable "port" {
   description = "The port on which the database is accessible"
   type        = number
+}
+variable "db_sg_name" {
+  description = "Name of the database security group"
+  type        = string
+}
+variable "db_name" {
+  description = "The name of the database to create"
+  type        = string
+}
+variable "db_username" {
+  description = "The username for the database"
+  type        = string
+}
+variable "db_password" {
+  description = "The password for the database"
+  type        = string
+  sensitive   = true
 }
