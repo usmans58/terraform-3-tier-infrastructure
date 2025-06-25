@@ -32,8 +32,6 @@ resource "aws_vpc_security_group_egress_rule" "frontend-sg-egress" {
   security_group_id = aws_security_group.frontend-sg.id
   description       = "Allow all outbound traffic"
   ip_protocol       = "-1"
-  from_port         = 0
-  to_port           = 0
   cidr_ipv4         = "0.0.0.0/0"
 }
 
@@ -51,11 +49,9 @@ resource "aws_vpc_security_group_ingress_rule" "backend-sg-ingress-http" {
   to_port           = 8080
   referenced_security_group_id = aws_security_group.frontend-sg.id
 }
-resource "aws_vpc_security_group_ingress_rule" "backend-sg-egress" {
+resource "aws_vpc_security_group_egress_rule" "backend-sg-egress" {
   security_group_id = aws_security_group.backend-sg.id
   description       = "Allow all outbound traffic"
   ip_protocol       = "-1"
-  from_port         = 0
-  to_port           = 0
   cidr_ipv4         = "0.0.0.0/0"
 }
