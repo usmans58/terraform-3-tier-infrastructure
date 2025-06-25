@@ -42,11 +42,11 @@ resource "aws_security_group" "backend-sg" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "backend-sg-ingress-http" {
-  security_group_id = aws_security_group.backend-sg.id
-  description       = "Allow HTTP traffic from frontend"
-  ip_protocol       = "tcp"
-  from_port         = 8080
-  to_port           = 8080
+  security_group_id            = aws_security_group.backend-sg.id
+  description                  = "Allow HTTP traffic from frontend"
+  ip_protocol                  = "tcp"
+  from_port                    = 8080
+  to_port                      = 8080
   referenced_security_group_id = aws_security_group.frontend-sg.id
 }
 resource "aws_vpc_security_group_egress_rule" "backend-sg-egress" {
