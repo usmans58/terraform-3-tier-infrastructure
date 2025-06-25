@@ -10,14 +10,13 @@ This setup includes networking (VPC, subnets), compute resources (EC2), load bal
 This project builds the following AWS resources:
 
 - **VPC** with public and private subnets across multiple AZs
-- **Internet Gateway** and **NAT Gateway** for internet access
+- **Internet Gateway** for internet access
 - **Route Tables** for proper routing of public and private traffic
 - **Security Groups** for Web, App, and DB layers
 - **EC2 Instances** in:
   - **Web Tier** (public subnet, behind ALB)
   - **App Tier** (private subnet)
   - **DB Tier** (isolated private subnet)
-- **Application Load Balancer (ALB)** in front of the Web tier
 
 ---
 
@@ -28,7 +27,7 @@ terraform-3tier-infrastructure/
 │   ├── VPC/
 │   ├── EC2/
 │   ├── Security Group/
-│   └── ALB/
+│   └── db/
 ├── variables.tf
 ├── main.tf
 ├── outputs.tf
@@ -66,7 +65,6 @@ terraform-3tier-infrastructure/
 # 🔐 Security Considerations
 	•	The database subnet does not have internet access.
 	•	Security groups restrict access between tiers using specific ports.
-	•	Public access is allowed only through the ALB to the web tier.
 
 
 # Cleanup
