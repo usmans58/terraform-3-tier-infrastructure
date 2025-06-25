@@ -42,3 +42,7 @@ variable "vpc_security_group_ids" {
   description = "List of VPC security group IDs to associate with the database"
   type        = string
 }
+variable "port" {
+  description = "The port on which the database is accessible"
+  type        = number
+}

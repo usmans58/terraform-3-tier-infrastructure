@@ -7,6 +7,7 @@ data "aws_db_instance" "database" {
   auto_minor_version_upgrade = var.auto_minor_version_upgrade
   backup_retention_period    = var.backup_retention_period
   db_subnet_group            = var.db_subnet_group_name
-  vpc_security_groups         = [var.vpc_security_group_ids]
+  vpc_security_groups        = [var.vpc_security_group_ids]
   publicly_accessible        = var.publicly_accessible
+  port                      = var.port
 }

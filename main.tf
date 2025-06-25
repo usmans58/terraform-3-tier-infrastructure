@@ -51,3 +51,21 @@ module "security_groups" {
   depends_on = [module.vpc]
 
 }
+module "db" {
+  source = "./modules/db"
+
+  db_instance_identifier     = var.db_instance_identifier
+  db_engine                  = var.db_engine
+  db_engine_version          = var.db_engine_version
+  db_instance_class          = var.db_instance_class
+  allocated_storage          = var.allocated_storage
+  port                       = var.port
+  db_subnet_group_name       = module.vpc.db_subnet_group_name
+  auto_minor_version_upgrade = var.auto_minor_version_upgrade
+  backup_retention_period    = var.backup_retention_period
+  vpc_security_group_ids     = [module.security_groups.backend_security_group_id]
+  publicly_accessible        = var.publicly_accessible
+    
+
+  depends_on = [module.vpc, module.security_groups]
+}
